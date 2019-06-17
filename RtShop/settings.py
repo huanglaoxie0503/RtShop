@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     'xadmin',
     'rest_framework',
+    'django_filters',
 ]
 
 SITE_ID = 1
@@ -95,7 +96,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "rt_shop",
         'USER': "root",
-        'PASSWORD': "root0503",
+        'PASSWORD': "root",
         'HOST': "127.0.0.1",
         "OPTIONS": {"init_command": "SET default_storage_engine=INNODB;"}
     }
@@ -143,3 +144,9 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+# REST_FRAMEWORK = {
+#     # 备注：分页报错添加
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+#     'PAGE_SIZE': 10,
+# }
