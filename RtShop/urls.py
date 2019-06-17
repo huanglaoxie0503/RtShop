@@ -21,12 +21,14 @@ from rest_framework.documentation import include_docs_urls
 from rest_framework.routers import DefaultRouter
 
 from RtShop.settings import MEDIA_ROOT
-from goods.views import GoodsListViewSet
+from goods.views import GoodsListViewSet, GoodsCategoryViewSet
 
 router = DefaultRouter()
 
 # 配置goods的url
-router.register(r'goods', GoodsListViewSet)
+router.register(r'goods', GoodsListViewSet, base_name="goods")
+# 配置 category 的url
+router.register('category', GoodsCategoryViewSet, base_name="category")
 
 
 urlpatterns = [

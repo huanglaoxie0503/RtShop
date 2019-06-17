@@ -3,13 +3,14 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import mixins
 from rest_framework import generics
+from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework import viewsets
 
-from .serializers import GoodsSerializer
-from .models import Goods
+from .serializers import GoodsSerializer, CategorySerializer
+from .models import Goods, GoodsCategory
 from .filters import GoodsFilter
 
 # Create your views here.
@@ -25,49 +26,27 @@ class GoodsPagination(PageNumberPagination):
     max_page_size = 100
 
 
-# class GoodsListView(APIView):
-#     """
-#     List all goods.
-#     """
-#     def get(self, request, format=None):
-#         goods = Goods.objects.all()[:10]
-#         goods_serializer = GoodsSerializer(goods, many=True)
-#         return Response(goods_serializer.data)
-#
-#     def post(self, request, format=None):
-#         # 接收前端发来的数据
-#         serializer = GoodsSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-# class GoodsListView(APIView):
-#     def get(self, request, format=None):
-#         goods = Goods.objects.all()[:10]
-#         goods_serializer = GoodsSerializer(goods, many=True)
-#         return Response(goods_serializer.data)
-
-
-class GoodsListView(generics.ListAPIView):
-    """
-    商品列表页
-    """
-    queryset = Goods.objects.all()
-    serializer_class = GoodsSerializer
-    pagination_class = GoodsPagination
-
-
 class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
-    商品列表页
+    List:
+        商品列表页，分页、搜索、过滤、排序
     """
-    queryset = Goods.objects.all()
+    queryset = Goods.objects.all().order_by('id')
     serializer_class = GoodsSerializer
     pagination_class = GoodsPagination
-    filter_backends = (DjangoFilterBackend,)
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filterset_fields = ('name', 'shop_price')
     filter_class = GoodsFilter
+    search_fields = ('name', 'goods_brief', 'goods_desc')
+    ordering_fields = ('sold_num', 'add_time')
+
+
+class GoodsCategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    """
+    List:
+        商品分类列表数据
+    """
+    queryset = GoodsCategory.objects.all()
+    serializer_class = CategorySerializer
 
 
