@@ -37,6 +37,15 @@ class VerifyCodeSerializer(serializers.ModelSerializer):
         return mobile
 
 
+class UserDetailSerializer(serializers.ModelSerializer):
+    """
+    用户详情序列化类
+    """
+    class Meta:
+        model = User
+        fields = ("name", "gender", "birthday", "email", "mobile")
+
+
 class UserRegisterSerializer(serializers.ModelSerializer):
     code = serializers.CharField(required=True, max_length=4, min_length=4, help_text="验证码", label="验证码",
                                  write_only=True,

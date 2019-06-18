@@ -100,7 +100,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "rt_shop",
         'USER': "root",
-        'PASSWORD': "root",
+        'PASSWORD': "root0503",
         'HOST': "127.0.0.1",
         "OPTIONS": {"init_command": "SET default_storage_engine=INNODB;"}
     }
@@ -141,6 +141,8 @@ USE_TZ = False
 
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
+    # 解决超级用户无法登陆，请输入正确的用户名和密码来登陆您的管理账户。请注意用户名和密码均为大小写相关。
+    'django.contrib.auth.backends.ModelBackend'
 )
 
 
