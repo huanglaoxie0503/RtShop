@@ -19,16 +19,26 @@ from django.urls import path
 from django.views.static import serve
 from rest_framework.documentation import include_docs_urls
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken import views
+from rest_framework_jwt.views import obtain_jwt_token
 
 from RtShop.settings import MEDIA_ROOT
+from users.views import VerifyCodeViewSet, UserRegisterViewSet
 from goods.views import GoodsListViewSet, GoodsCategoryViewSet
+from user_operation.views import UserFavViewSet
 
 router = DefaultRouter()
 
+# 配置code的url
+router.register(r'codes', VerifyCodeViewSet, base_name="codes")
+# 配置code的url
+router.register(r'users', UserRegisterViewSet, base_name="users")
 # 配置goods的url
 router.register(r'goods', GoodsListViewSet, base_name="goods")
-# 配置 category 的url
+# 配置category的url
 router.register('category', GoodsCategoryViewSet, base_name="category")
+# 收藏
+router.register('userfavs', UserFavViewSet, base_name="userfavs")
 
 
 urlpatterns = [
@@ -39,6 +49,10 @@ urlpatterns = [
     # 商品列表页
     url('', include(router.urls)),
 
-    url(r'docs/', include_docs_urls(title="生鲜电商"))
+    url(r'docs/', include_docs_urls(title="Rt-生鲜电商后台文档")),
+    # drf 自带的token认证模式
+    url(r'^api-token-auth/', views.obtain_auth_token),
+    # jwt 认证模式
+    url(r'^login/', obtain_jwt_token),
 
 ]
