@@ -100,7 +100,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "rt_shop",
         'USER': "root",
-        'PASSWORD': "root0503",
+        'PASSWORD': "root",
         'HOST': "127.0.0.1",
         "OPTIONS": {"init_command": "SET default_storage_engine=INNODB;"}
     }

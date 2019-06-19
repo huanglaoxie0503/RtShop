@@ -24,8 +24,9 @@ from rest_framework_jwt.views import obtain_jwt_token
 
 from RtShop.settings import MEDIA_ROOT
 from users.views import VerifyCodeViewSet, UserViewSet
-from goods.views import GoodsListViewSet, GoodsCategoryViewSet
-from user_operation.views import UserFavViewSet
+from goods.views import GoodsListViewSet, GoodsCategoryViewSet, BannerViewSet
+from trade.views import ShoppingCartViewSet, OrderInfoViewSet
+from user_operation.views import UserFavViewSet, UserLeavingMessageViewSet, UserAddressViewSet
 
 router = DefaultRouter()
 
@@ -37,8 +38,18 @@ router.register(r'users', UserViewSet, base_name="users")
 router.register(r'goods', GoodsListViewSet, base_name="goods")
 # 配置category的url
 router.register('category', GoodsCategoryViewSet, base_name="category")
-# 收藏
+# 收藏url
 router.register('userfavs', UserFavViewSet, base_name="userfavs")
+# 留言url
+router.register('message', UserLeavingMessageViewSet, base_name="message")
+# 收货地址url
+router.register('address', UserAddressViewSet, base_name="address")
+# 购物车url
+router.register('shopcarts', ShoppingCartViewSet, base_name="shopcarts")
+# 订单相关url
+router.register('orders', OrderInfoViewSet, base_name="orders")
+# 轮播图url
+router.register('banners', BannerViewSet, base_name="banners")
 
 
 urlpatterns = [
@@ -56,3 +67,4 @@ urlpatterns = [
     url(r'^login/', obtain_jwt_token),
 
 ]
+

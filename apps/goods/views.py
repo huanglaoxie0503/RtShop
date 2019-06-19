@@ -9,8 +9,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from rest_framework import viewsets
 
-from .serializers import GoodsSerializer, CategorySerializer
-from .models import Goods, GoodsCategory
+from .serializers import GoodsSerializer, CategorySerializer, BannerSerializer
+from .models import Goods, GoodsCategory, Banner
 from .filters import GoodsFilter
 
 # Create your views here.
@@ -52,5 +52,13 @@ class GoodsCategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     queryset = GoodsCategory.objects.all()
     serializer_class = CategorySerializer
+
+
+class BannerViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    """
+    获取轮播图列表
+    """
+    queryset = Banner.objects.all().order_by("index")
+    serializer_class = BannerSerializer
 
 

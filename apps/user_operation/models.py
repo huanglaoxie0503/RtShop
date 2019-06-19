@@ -54,7 +54,7 @@ class UserLeavingMessage(models.Model):
 
 class UserAddress(models.Model):
     """
-    用户收货地址
+    收货地址
     """
     user = models.ForeignKey(User, verbose_name="用户", on_delete=models.CASCADE)
     province = models.CharField(max_length=100, default="", verbose_name="省份")
