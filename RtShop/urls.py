@@ -57,7 +57,7 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
-    # 商品列表页
+    # 配置router绑定
     url('', include(router.urls)),
 
     url(r'docs/', include_docs_urls(title="Rt-电商后台文档")),

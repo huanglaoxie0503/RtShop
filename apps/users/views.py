@@ -15,7 +15,7 @@ from .serializers import VerifyCodeSerializer, UserRegisterSerializer, UserDetai
 from .models import VerifyCode
 from utils.send_verify_code import SendVerifyCode
 
-from RtShop.settings import APIKEY
+from RtShop.settings import ApiKey
 
 # Create your views here.
 User = get_user_model()
@@ -57,7 +57,7 @@ class VerifyCodeViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
         mobile = serializer.validated_data['mobile']
 
-        send_msg = SendVerifyCode(APIKEY)
+        send_msg = SendVerifyCode(ApiKey)
 
         code = self.generate_code()
         msg_status = send_msg.send_msg(code=code, mobile=mobile)

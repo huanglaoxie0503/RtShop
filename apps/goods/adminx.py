@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import xadmin
 
-from goods.models import GoodsCategory, Goods, GoodsCategoryBrand, GoodsImage, Banner
+from goods.models import GoodsCategory, Goods, GoodsCategoryBrand, Banner
 
 
 class GoodsCategoryAdmin(object):
