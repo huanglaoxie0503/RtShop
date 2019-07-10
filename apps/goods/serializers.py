@@ -5,12 +5,18 @@ from .models import Goods, GoodsCategory, GoodsImage, Banner
 
 
 class CategorySerializer3(serializers.ModelSerializer):
+    """
+    三级分类
+    """
     class Meta:
         model = GoodsCategory()
         fields = "__all__"
 
 
 class CategorySerializer2(serializers.ModelSerializer):
+    """
+    二级分类
+    """
     sub_cat = CategorySerializer3(many=True)
 
     class Meta:
@@ -19,6 +25,9 @@ class CategorySerializer2(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    """
+    一级分类
+    """
     sub_cat = CategorySerializer2(many=True)
 
     class Meta:

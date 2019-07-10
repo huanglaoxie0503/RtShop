@@ -37,7 +37,7 @@ router.register(r'users', UserViewSet, base_name="users")
 # 配置goods的url
 router.register(r'goods', GoodsListViewSet, base_name="goods")
 # 配置category的url
-router.register('category', GoodsCategoryViewSet, base_name="category")
+router.register('categorys', GoodsCategoryViewSet, base_name="categorys")
 # 收藏url
 router.register('userfavs', UserFavViewSet, base_name="userfavs")
 # 留言url

@@ -1,13 +1,12 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import generics
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
+# from rest_framework import status
+# from rest_framework import generics
 from rest_framework import mixins
+from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
-
-from rest_framework import viewsets
 
 from .serializers import GoodsSerializer, CategorySerializer, BannerSerializer
 from .models import Goods, GoodsCategory, Banner
@@ -37,14 +36,18 @@ class GoodsListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewset
     queryset = Goods.objects.all().order_by('id')
     serializer_class = GoodsSerializer
     pagination_class = GoodsPagination
+
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
-    filterset_fields = ('name', 'shop_price')
+    # 过滤
     filter_class = GoodsFilter
+    filterset_fields = ('name', 'shop_price')
+    # 模糊查询
     search_fields = ('name', 'goods_brief', 'goods_desc')
+    # 排序
     ordering_fields = ('sold_num', 'add_time')
 
 
-class GoodsCategoryViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+class GoodsCategoryViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     """
     list:
         商品分类列表数据
