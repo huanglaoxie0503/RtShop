@@ -1,15 +1,15 @@
-#Django 后台开发（前后端分离）
+Django 后台开发（前后端分离）
 
-##django rest framework -- drf
+django rest framework -- drf
 
-    ###继承关系：
+    继承关系：
         GenericViewSet(viewset)   -- drf
             GenericAPIView        -- drf
                 APIView           -- drf
                     View          --django
                     
                 
-    ###mixin:           
+    mixin:           
         CreateModelMixin
         ListModelMixin
         RetrieveModelMixin
