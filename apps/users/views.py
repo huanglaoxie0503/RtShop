@@ -8,7 +8,7 @@ from rest_framework import status
 from rest_framework import permissions
 from rest_framework import authentication
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
-from rest_framework_jwt.serializers import jwt_decode_handler, jwt_payload_handler
+from rest_framework_jwt.serializers import jwt_encode_handler, jwt_payload_handler
 from random import choice
 
 from .serializers import VerifyCodeSerializer, UserRegisterSerializer, UserDetailSerializer
@@ -75,7 +75,7 @@ class VerifyCodeViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
 
 class UserViewSet(mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     """
-    用户：注册、修改
+    用户获取、用户注册、用户修改
     """
     serializer_class = UserRegisterSerializer
     queryset = User.objects.all()
@@ -109,13 +109,15 @@ class UserViewSet(mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.Retri
 
         re_dict = serializer.data
         payload = jwt_payload_handler(user)
-        re_dict["token"] = jwt_decode_handler(payload)
+        # 注意此处不能用 jwt_decode_handler(payload)
+        re_dict["token"] = jwt_encode_handler(payload)
         re_dict["name"] = user.name if user.name else user.username
 
         headers = self.get_success_headers(serializer.data)
         return Response(re_dict, status=status.HTTP_201_CREATED, headers=headers)
 
     def get_object(self):
+        # 返回当前用户
         return self.request.user
 
     def perform_create(self, serializer):

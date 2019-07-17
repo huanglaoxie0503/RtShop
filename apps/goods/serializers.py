@@ -43,6 +43,7 @@ class GoodsImageSerializer(serializers.ModelSerializer):
 
 class GoodsSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
+    # 和模型里的外键的related_name="images"值保持一样
     images = GoodsImageSerializer(many=True)
 
     class Meta:

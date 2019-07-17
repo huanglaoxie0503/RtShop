@@ -23,6 +23,7 @@ class UserFavSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserFav
         validators = [
+            # 联合主键查询
             UniqueTogetherValidator(
                 queryset=UserFav.objects.all(),
                 fields=('user', 'goods'),

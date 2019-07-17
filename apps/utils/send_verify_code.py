@@ -16,7 +16,7 @@ class SendVerifyCode(object):
         params = {
             "apikey": self.api_key,
             "mobile": mobile,
-            "text": "【Rt生鲜】您的验证码是{code}。如非本人操作，请忽略本短信".format(code=code)
+            "text": "【黄和帅】您的验证码是{code}。如非本人操作，请忽略本短信".format(code=code)
         }
 
         response = requests.post(self.single_send_url, data=params)
