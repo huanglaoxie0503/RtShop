@@ -100,7 +100,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "rt_shop",
         'USER': "root",
-        'PASSWORD': "root",
+        'PASSWORD': "root0503",
         'HOST': "127.0.0.1",
         "OPTIONS": {"init_command": "SET default_storage_engine=INNODB;"}
     }
@@ -179,4 +179,4 @@ JWT_AUTH = {
 REGEX_MOBILE = r"^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$" # r"^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
 
 # 云片网设置
-ApiKey = "58fe76d63533aaea39eed8deddff81e2"
+ApiKey = "xxx"
