@@ -19,3 +19,9 @@ mixin:
 ```markdown
 增加 JWT 用户认证，pip install rest_framework_jwt
 ```
+
+```markdown
+drf缓存设置   pip install drf-extensions
+redis缓存设置 pip install django-redis
+
+```

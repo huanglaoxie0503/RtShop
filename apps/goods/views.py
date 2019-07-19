@@ -7,6 +7,7 @@ from rest_framework import viewsets
 from rest_framework import filters
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework_extensions.cache.mixins import CacheResponseMixin
 
 from .serializers import GoodsSerializer, CategorySerializer, BannerSerializer
 from .models import Goods, GoodsCategory, Banner
@@ -25,10 +26,10 @@ class GoodsPagination(PageNumberPagination):
     max_page_size = 100
 
 
-class GoodsListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+class GoodsListViewSet(CacheResponseMixin, mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     """
     list:
-        商品列表页，分页、搜索、过滤、排序、商品详情页
+        商品列表页，分页、搜索、过滤、排序、商品详情页、drf缓存
 
     retrieve:
         商品详情
