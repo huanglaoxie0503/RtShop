@@ -41,7 +41,7 @@ router.register('categorys', GoodsCategoryViewSet, base_name="categorys")
 # 收藏url
 router.register('userfavs', UserFavViewSet, base_name="userfavs")
 # 留言url
-router.register('message', UserLeavingMessageViewSet, base_name="message")
+router.register('messages', UserLeavingMessageViewSet, base_name="messages")
 # 收货地址url
 router.register('address', UserAddressViewSet, base_name="address")
 # 购物车url
@@ -65,6 +65,5 @@ urlpatterns = [
     url(r'^api-token-auth/', views.obtain_auth_token),
     # jwt 认证模式
     url(r'^login/', obtain_jwt_token),
-
 ]
 

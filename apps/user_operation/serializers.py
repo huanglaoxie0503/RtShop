@@ -7,6 +7,7 @@ from goods.serializers import GoodsSerializer
 
 
 class UserFavDetailSerializer(serializers.ModelSerializer):
+    # 用户收藏商品的详细信息
     goods = GoodsSerializer()
 
     class Meta:
@@ -38,6 +39,7 @@ class UserLeavingMessageSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault()
     )
+    # 时间参数自动加入且格式化显示
     add_time = serializers.DateTimeField(read_only=True, format="%Y-%m-%d %H:%M:%S")
 
     class Meta:

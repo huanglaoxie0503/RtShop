@@ -100,7 +100,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': "rt_shop",
         'USER': "root",
-        'PASSWORD': "root0503",
+        'PASSWORD': "root",
         'HOST': "127.0.0.1",
         "OPTIONS": {"init_command": "SET default_storage_engine=INNODB;"}
     }
@@ -176,7 +176,7 @@ JWT_AUTH = {
 }
 
 # 手机号码正则表达式
-REGEX_MOBILE = r"^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$" # r"^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
+REGEX_MOBILE = r"^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$"
 
 # 云片网设置
 ApiKey = "xxx"
