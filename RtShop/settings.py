@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'rest_framework.authtoken',
+    'social_django',
 ]
 
 SITE_ID = 1
@@ -84,6 +85,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 第三方登陆
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -141,8 +145,12 @@ USE_TZ = False
 
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
+    # 配置微博、微信、QQ登陆
+    'social_core.backends.weibo.WeiboOAuth2',
+    'social_core.backends.qq.QQOAuth2',
+    'social_core.backends.weixin.WeixinOAuth2',
     # 解决超级用户无法登陆，请输入正确的用户名和密码来登陆您的管理账户。请注意用户名和密码均为大小写相关。
-    'django.contrib.auth.backends.ModelBackend'
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 
@@ -203,3 +211,16 @@ REGEX_MOBILE = r"^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$"
 
 # 云片网设置
 ApiKey = "xxx"
+
+# 微博登陆
+SOCIAL_AUTH_WEIBO_KEY = '386808437'
+SOCIAL_AUTH_WEIBO_SECRET = '930370da3b94ff9bfd02a43b4fc94135'
+# QQ 登陆
+SOCIAL_AUTH_QQ_KEY = 'foobar'
+SOCIAL_AUTH_QQ_SECRET = 'bazqux'
+# 微信
+SOCIAL_AUTH_WEIXIN_KEY = 'foobar'
+SOCIAL_AUTH_WEIXIN_SECRET = 'bazqux'
+
+# 配置登陆成功后跳转页面（首页）
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/index/'

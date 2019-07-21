@@ -25,3 +25,7 @@ drf缓存设置   pip install drf-extensions
 redis缓存设置 pip install django-redis
 
 ```
+
+```markdown
+集成第三方登陆模块 pip install social-auth-app-django
+```

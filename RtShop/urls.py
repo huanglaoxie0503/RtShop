@@ -64,6 +64,8 @@ urlpatterns = [
     # drf 自带的token认证模式
     url(r'^api-token-auth/', views.obtain_auth_token),
     # jwt 认证模式
-    url(r'^login/', obtain_jwt_token),
+    url(r'^login/$', obtain_jwt_token),
+    # 第三方登陆url
+    url('', include('social_django.urls', namespace='social'))
 ]
 
