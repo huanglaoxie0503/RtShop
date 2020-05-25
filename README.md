@@ -29,3 +29,7 @@ redis缓存设置 pip install django-redis
 ```markdown
 集成第三方登陆模块 pip install social-auth-app-django
 ```
+
+```
+安装第三方依赖库：pip install -i https://pypi.doubanio.com/simple/ -r requirements.txt
+```
