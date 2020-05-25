@@ -14,6 +14,9 @@ import os
 import sys
 import datetime
 
+HOST_SQL = "127.0.0.1"
+HOST_REDIS = "127.0.0.1"
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # apps、extra_apps 加入到根搜索目录
@@ -105,7 +108,7 @@ DATABASES = {
         'NAME': "rt_shop",
         'USER': "root",
         'PASSWORD': "root0503",
-        'HOST': "127.0.0.1",
+        'HOST': HOST_SQL,
         "OPTIONS": {"init_command": "SET default_storage_engine=INNODB;"}
     }
 }
@@ -181,9 +184,11 @@ REST_FRAMEWORK = {
             'rest_framework.throttling.UserRateThrottle'
         ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '2/minute',
-        'user': '3/minute'
-    }
+        'anon': '20/minute',
+        'user': '30/minute'
+    },
+    # 新版的 rest_framework 需要指定默认schema
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
 }
 # drf缓存过期时间设置
 REST_FRAMEWORK_EXTENSIONS = {
@@ -193,7 +198,7 @@ REST_FRAMEWORK_EXTENSIONS = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
+        "LOCATION": "redis://:root0503@{0}:6379/1".format(HOST_REDIS),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }

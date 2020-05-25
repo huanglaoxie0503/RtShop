@@ -21,3 +21,4 @@ drf-extensions
 django-redis
 pycryptodome
 raven
+social-auth-app-django

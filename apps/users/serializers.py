@@ -94,7 +94,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("验证码错误")
 
     def validate(self, attrs):
-        attrs["mobile"] = attrs["username"]
+        attrs["mobile"] = attrs["mobile"]
         del attrs["code"]
         return attrs
 

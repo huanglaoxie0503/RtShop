@@ -31,25 +31,25 @@ from user_operation.views import UserFavViewSet, UserLeavingMessageViewSet, User
 router = DefaultRouter()
 
 # 配置code的url
-router.register(r'codes', VerifyCodeViewSet, base_name="codes")
+router.register(r'codes', VerifyCodeViewSet, basename="codes")
 # 配置code的url
-router.register(r'users', UserViewSet, base_name="users")
+router.register(r'users', UserViewSet, basename="users")
 # 配置goods的url
-router.register(r'goods', GoodsListViewSet, base_name="goods")
+router.register(r'goods', GoodsListViewSet, basename="goods")
 # 配置category的url
-router.register('categorys', GoodsCategoryViewSet, base_name="categorys")
+router.register('categorys', GoodsCategoryViewSet, basename="categorys")
 # 收藏url
-router.register('userfavs', UserFavViewSet, base_name="userfavs")
+router.register('userfavs', UserFavViewSet, basename="userfavs")
 # 留言url
-router.register('messages', UserLeavingMessageViewSet, base_name="messages")
+router.register('messages', UserLeavingMessageViewSet, basename="messages")
 # 收货地址url
-router.register('address', UserAddressViewSet, base_name="address")
+router.register('address', UserAddressViewSet, basename="address")
 # 购物车url
-router.register('shopcarts', ShoppingCartViewSet, base_name="shopcarts")
+router.register('shopcarts', ShoppingCartViewSet, basename="shopcarts")
 # 订单相关url
-router.register('orders', OrderInfoViewSet, base_name="orders")
+router.register('orders', OrderInfoViewSet, basename="orders")
 # 轮播图url
-router.register('banners', BannerViewSet, base_name="banners")
+router.register('banners', BannerViewSet, basename="banners")
 
 
 urlpatterns = [
